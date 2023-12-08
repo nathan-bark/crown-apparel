@@ -1,10 +1,10 @@
-import { signInGooglePopup } from '../../utils/firebase/firebase.utils'
+import { signInGooglePopup, createUserDocfromUserAuth } from '../../utils/firebase/firebase.utils'
 
 const SignIn = () => {
 
     const logGoogleUser = async () => {
-        const response =await signInGooglePopup();
-        console.log(response);
+        const { user } = await signInGooglePopup();
+        const userDocRef = await createUserDocfromUserAuth(user)
     }
 
   return (
