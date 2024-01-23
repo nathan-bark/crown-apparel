@@ -7,7 +7,7 @@ import {
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
-import './sign-up-form.styles.scss'
+import "./sign-up-form.styles.scss";
 
 const defaultFormFields = {
   displayName: "",
@@ -21,8 +21,8 @@ const SignUpForm = () => {
   const { displayName, email, password, confirmPassword } = formFields;
 
   const resetFormFields = () => {
-    setFormFields(defaultFormFields)
-  }
+    setFormFields(defaultFormFields);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,11 +33,13 @@ const SignUpForm = () => {
     }
 
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(email, password);
-      console.log(user);
+      const { user } = await createAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
 
-      await createUserDocfromUserAuth(user,  { displayName } );
-      resetFormFields()
+      await createUserDocfromUserAuth(user, { displayName });
+      resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("A user with that email already exists!");
@@ -67,7 +69,7 @@ const SignUpForm = () => {
         />
 
         <FormInput
-        label='Email'
+          label="Email"
           type="email"
           required
           onChange={handleFormChange}
@@ -75,7 +77,6 @@ const SignUpForm = () => {
           value={email}
         />
 
-        
         <FormInput
           label="Password"
           type="password"

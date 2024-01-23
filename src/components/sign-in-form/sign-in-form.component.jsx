@@ -24,19 +24,21 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    const { user } = await signInGooglePopup();
-    await createUserDocfromUserAuth(user);
+    await signInGooglePopup();
+     
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const user = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
+
+      resetFormFields()
+      
     } catch (error) {
       switch (error.code) {
         case "auth/invalid-credential":
@@ -47,6 +49,7 @@ const SignInForm = () => {
           break;
         case "auth/user-not-found":
           alert("Incorrect or not valid email address!");
+          break;
         default:
           alert("Oops! There was an error!");
       }
