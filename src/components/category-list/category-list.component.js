@@ -1,6 +1,5 @@
-import CategoryBody from "../category-body/category-body.component";
+import Directory from "../directory/directory.component";
 
-import "./category-list.styles.scss";
 const CategoryList = () => {
   const categories = [
     {
@@ -31,11 +30,7 @@ const CategoryList = () => {
   ];
 
   return (
-    <div className="categories-container">
-      {categories.map((category) => (
-        <CategoryBody key={category.id} category={category} />
-      ))}
-    </div>
+   <Directory categories={categories}/>
   );
 };
 
